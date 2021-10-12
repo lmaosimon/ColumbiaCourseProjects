@@ -1,0 +1,113 @@
+---
+title: "POTD 03 - Markdown"
+author: "Simon Chen"
+date: "10/12/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Run the following code to create a tibble using the `state.x77` data. <br>
+
+```{r task0}
+# Import libraries.
+library(tidyverse)
+library(ggplot2)
+library(magrittr)
+
+# Load the dataset and create a tibble.
+dat <- data.frame(state.x77)
+dat <- tibble(dat)
+
+# Add the region and division and abbreviation information
+dat$Region <- state.region
+dat$Division <- state.division
+dat$abbrev <- state.abb
+print(dat, n = 50, width = 100)
+```
+
+## Task 1
+
+Create a scatterplot of life expectancy on the horizontal and illiteracy rate on the vertical and color the point by state region.
+
+
+```{r task 1}
+ggplot(data = dat, mapping = aes(x=Life.Exp, y=Illiteracy, color=state.region)) +
+  geom_point() +
+  xlab('Life Expectancy') +
+  ylab('Illiteracy Rate')
+```
+
+## Task 2
+
+Now, instead of using **geom_point()**, use **geom_text** to create the same plot as above but with the state abbreviations plotted for each point instead of circles. It should look like this:
+
+```{r task 2}
+ggplot(data = dat, mapping = aes(x=Life.Exp, y=Illiteracy, color=state.region)) +
+  geom_text(aes(label=abbrev)) +
+  xlab('Life Expectancy') +
+  ylab('Illiteracy Rate')
+```
+
+## Task 3
+
+Filter the data set to include only states that have illteracy rates higher than 1.6 and life expectancies lower than 75. Verify visually that your results agree with your plot.
+
+```{r task 3}
+# Filter the data
+f_dat <-filter(dat, Illiteracy > 1.6, Life.Exp < 75)
+# Verify
+ggplot(data = f_dat, aes(x=Life.Exp, y=Illiteracy)) +
+  geom_text(aes(label=abbrev)) +
+  xlab('Life Expectancy') +
+  ylab('Illiteracy Rate')
+```
+
+## Task 4
+
+Create a data set that only contains Hawaii by filtering on region and life expectancy.
+
+```{r task 4}
+hawaii_dat <- filter(dat, Region == 'West', Life.Exp == 73.6)
+hawaii_dat
+```
+## Task 5
+
+Arrange the data, first in ascending then in descending order, based on state area. <br>
+Which are the three states with most area? Which are the three states with least area?
+
+```{r task 5}
+# Ascending order.
+asc_dat <- arrange(dat, Area)
+print(head(asc_dat, 3))
+print(head(asc_dat, 3)$abbrev)
+
+# Descending order.
+des_dat <- arrange(dat, desc(Area))
+head(des_dat, 3)
+```
+
+## Task 6
+Use mutate() to add a variable to the data frame that gives state area in square kilometers (instead of square miles).
+
+```{r Task 6}
+dat <- mutate(dat, Area_in_square_km = Area * 2.59)
+```
+
+## Task 7
+Create a data frame with four variables: state population, state area, the number of people per square mile and the number of people per square kilometer.
+```{r Task 7}
+four_dat <- mutate(dat, pop_per_square_mile = Population / Area,
+         pop_per_square_km = Population / Area_in_square_km) %>%
+  select(Population, Area, pop_per_square_mile, pop_per_square_km)
+head(four_dat)
+```
+
+## Task 8
+I want to use count function to get a gist of this data.
+```{r Task 8}
+count(population)
+```
