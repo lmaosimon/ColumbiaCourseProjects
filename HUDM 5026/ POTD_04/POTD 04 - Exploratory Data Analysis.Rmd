@@ -1,0 +1,150 @@
+---
+title: "POTD 04"
+author: "Simon Chen"
+date: "10/19/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+
+Run the following code to create a tibble using the `state.x77` data. <br>
+
+```{r task0}
+# Import libraries.
+library(tidyverse)
+library(ggplot2)
+library(magrittr)
+
+# Load the dataset and create a tibble.
+dat <- data.frame(state.x77)
+dat <- tibble(dat)
+
+# Add the region and division and abbreviation information
+dat$Region <- state.region
+dat$Division <- state.division
+dat$abbrev <- state.abb
+print(dat, n = 50, width = 100)
+```
+
+## Task 1
+
+Create a histogram of life expectancy (i.e., including data from all 50 states).<br> Did
+you use binwidth = or bins = and how did you decide on the value?
+
+
+```{r task 1}
+ggplot(data = dat, mapping = aes(x=Life.Exp)) +
+  geom_histogram(binwidth = 0.5) +
+  xlab('Life Expectancy') +
+  ylab('counts')
+```
+
+## Task 2
+
+Use group_by() and summary() to determine mean life expectancies and HS grad-
+uation rates for each region.
+
+```{r task 2}
+group_by(dat, Region) %>%
+  summarise(avg_LE = mean(Life.Exp, na.rm = TRUE), 
+            avg_HS_rate = mean(HS.Grad, na.rm = TRUE))
+```
+
+## Task 3
+
+Use frequency polygons to create histograms of life expectancy by color based on state
+region, both by count and using density. <br>Which do you prefer for these data and why?
+
+I still preferred the counts one, because it's obviously clear to show the difference.
+```{r task 3}
+#by counts
+ggplot(data = dat, mapping = aes(Life.Exp, color = Region)) +
+  geom_freqpoly(binwidth= 0.5) + 
+  xlab("Life Expectancy") + 
+  ylab("counts")
+
+#by density
+ggplot(data = dat, mapping = aes(Life.Exp, after_stat(density), color = Region)) +
+  geom_freqpoly(binwidth= 0.5) + 
+  xlab("Life Expectancy") + 
+  ylab("density")
+```
+
+## Task 4
+
+Create conditional box plots of life expectancy by state region (i.e., using the same
+information as in the previous task). <br> What are the pros/cons to using boxplots vs frequency
+polygons here and in general?
+
+Pros: it can clearly show the range of the data, and mean.
+cons: But the comparison between then is not clear.
+```{r task 4}
+ggplot(data = dat, mapping = aes(Region, Life.Exp)) +
+  geom_boxplot() + 
+  ylab("Life Expectancy") + 
+  xlab("Region")
+```
+## Task 5
+Replicate the last plot but also order the boxplots by their medians.
+
+```{r task 5}
+ggplot(data = dat, mapping = aes(x=reorder(Region, Life.Exp, FUN = median), y=Life.Exp)) +
+  geom_boxplot() + 
+  ylab("Life Expectancy") + 
+  xlab("Region")
+```
+
+## Task 6
+Create a scatterplot of HS graduation rate on the horizontal axis and life expectancy
+on the vertical axis.
+
+```{r Task 6}
+ggplot(data = dat, mapping = aes(x = HS.Grad, y = Life.Exp)) +
+  geom_point() + 
+  ylab("Life Expectancy") + 
+  xlab("High School Graduation Rate")
+```
+
+## Task 7
+Replicate the scatterplot directly above using two-letter state abbreviations instead of
+points for plotting.
+```{r Task 7}
+ggplot(data = dat, mapping = aes(x = HS.Grad, y = Life.Exp)) +
+  geom_text(aes(label = abbrev)) + 
+  ylab("Life Expectancy") + 
+  xlab("High School Graduation Rate")
+```
+
+## Task 8
+
+Note that AK and NV are outlying. Use filter(), as in lines 163–169 of ’04_Code.R’,
+to color those two points blue.
+```{r Task 8}
+temp <- dat%>% 
+  filter(abbrev %in% c("AK", "NV"))
+
+ggplot(data = dat, mapping = aes(x = HS.Grad, y = Life.Exp)) +
+  geom_text(aes(label = abbrev)) + 
+  geom_text(data = temp, mapping = aes(x=HS.Grad, y = Life.Exp, label = abbrev), color = "blue") +
+  ylab("Life Expectancy") + 
+  xlab("High School Graduation Rate")
+```
+
+## Task 9
+
+Import your project data into R and make a plot of some kind.
+
+Reading data is fine but I need to sort the data then plot them...
+```{r Task 9}
+# Reading csv data
+dat <- read_csv("PTSD_Outcomes_Within_Each_Treatment_Arm.csv")
+dat <- tibble(dat)
+
+ggplot(data = dat, mapping = aes(x = study_id, y = "Total N Randomized")) +
+  geom_point() + 
+  ylab("Total N Randomized") + 
+  xlab("Study ID")
+```
