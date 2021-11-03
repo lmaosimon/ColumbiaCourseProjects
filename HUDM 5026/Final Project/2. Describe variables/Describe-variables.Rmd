@@ -1,0 +1,57 @@
+---
+title: "Describe variables"
+author: "Simon Chen"
+date: "10/26/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+Describe the variables you are interested in 
+working with – there should be around 5, at least one numeric and at least one 
+factor, but a few more is fine. The descriptions should include information on the 
+data type for each variable (numeric or factor), the range of values, and some type 
+of tabular or graphical summary (crosstabs, histogram, boxplot, scatterplot, etc.). 
+
+## Variables
+
+1. Study Class <Text>:<br>
+Describes top-level classification of the study as: Psychotherapy, Pharmacotherapy, CIH, Nonpharm biologic, Nonpharm cognitive, Collaborative Care, Psychotherapy & Pharmacotherapy, Psychotherapy & CIH, Other Mixed.<br>
+I will try to measure the effectiveness of each treatment method
+
+2. Total N Randomized <Number>:<br>
+Total participants randomized in the study (total of all arms).
+The range is [8, 943], we can see the distribution in different study class.
+
+```{r task 1}
+library(tidyverse)
+# Import the data
+dat <- read.csv('PTSD_Outcomes_Within_Each_Treatment_Arm.csv')
+dat <- tibble(dat)
+dat
+ggplot(data = dat, aes(x = Study.Class, y = Total.N.Randomized)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+3. Mean Measure Score <Number>:<br>
+Mean measure score for PTSD outcome
+To show the outcome performance.
+[-2.5, 129.31]
+```{r tsk 2}
+ggplot(data = dat, aes(x = Study.Class, y = Measure.Score.Mean)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+
+
+4. Psychotherapy <Boolean>:<br>
+Categorization of the arm/intervention: Yes, No, or null for Psychotherapy
+This is one of the specific treatment type which is a factor of effectiveness of the whole therapy.
+ 
+5. Male/Female percent <Numerical>:<br>
+At the study level, percent male/female.
+Because I think this would be different effect on sex.
+[0, 1]
