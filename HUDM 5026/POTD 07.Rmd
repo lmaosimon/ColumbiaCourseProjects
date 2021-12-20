@@ -1,0 +1,114 @@
+---
+title: "POTD 05 - Tibbles and Data Import"
+author: "Simon Chen"
+date: "11/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r task0}
+# Import necessary libraries.
+library(readr)
+library(tidyverse)
+# Import the data set.
+aiw <- read_file(file = "https://www.gutenberg.org/files/11/11-0.txt")
+```
+## Task 1
+Examine the first 3000 characters of aiw with str_sub().
+```{r task1}
+str_sub(aiw, 1, 3000)
+```
+## Task 2
+Note that when imported, the text file brought along some formatting in the way of
+"\n" and "\r" strings. Find and replace all such patterns with white space using str_replace_all().
+```{r task2}
+aiw <- str_replace_all(aiw, "\n", " ")
+aiw <- str_replace_all(aiw, "\r", " ")
+str_sub(aiw, 1, 3000)
+```
+
+## Task 3
+Project Gutenberg has added some text at the beginning and appended some legal
+boilerplate text to the end. Find the true beginning and ending of the text and save only the
+book text (i.e., drop off the boilerplate). Save this as aiw2.
+```{r task3a}
+# Drop the boilerpate
+str_locate_all(pattern = "Alice’s Adventures in Wonderland", aiw)
+```
+```{r task3b}
+# Find the end
+str_locate_all(pattern = "THE END", aiw)
+```
+```{r task3c}
+aiw2 <- str_sub(aiw, 900, 148854)
+str_sub(aiw2, 1, 3000)
+```
+```{r task3d}
+str_sub(aiw2, 147800, str_length(aiw2))
+```
+
+
+## Task 4
+Note that aiw2 is a single long character string. We would like to separate the words
+so that each is it’s own element of a character vector. So, once Task 2 is accomplished, use
+str_split() to do that and rename the result to aiw3. This will produce output in a list,
+but we want a vector, so use unlist() on aiw3 to turn it into a long character vector; again,
+save the output as aiw3 here.
+```{r task4}
+aiw3 <- unlist(str_split(aiw, boundary("word")))
+aiw3[1:20]
+```
+## Task 5
+What proportion of words in the book contain at least one uppercase letter?
+```{r task5}
+mean(str_detect(aiw3, "[A-Z]+"))
+```
+
+## Task 6
+What proportion of words in the book use some form of punctuation?
+```{r task 6}
+mean(str_detect(aiw3, "[[:punct:]]+"))
+```
+## Task 7
+
+Alice in Wonderland is one of the most influential books for children written over the
+past 200 years. As an example, ever wonder why Nintendo’s Super Mario grows when he eats
+a mushroom? Although Shigeru Miyamoto (Mario’s creator) has more recently denied a direct
+influence, he has spoken in the past about how he was thinking about Alice in Wonderland
+while creating the video game. How many times does the word "mushroom" occur in the
+text, regardless of letter case? Locate each instance of the word and print out enough of the
+surrounding text to display the context for each instance.
+
+```{r task 7a}
+sum(str_detect(aiw3, "(?i)mushroom"))
+```
+```{r task 7b}
+# Locate
+loc <- which(str_detect(aiw3, "(?i)mushroom") == TRUE)
+loc
+```
+```{r task 7c}
+aiw3[8803:8850]
+```
+```{r task 7d}
+aiw3[8852:8900]
+```
+
+```{r task 7e}
+aiw3[9912:9950]
+```
+```{r task 7f}
+aiw3[9960:9980]
+```
+```{r task 7g}
+aiw3[10870:10900]
+```
+```{r task 7h}
+aiw3[13633:13700]
+```
+```{r task 7i}
+aiw3[15961:16000]
+```

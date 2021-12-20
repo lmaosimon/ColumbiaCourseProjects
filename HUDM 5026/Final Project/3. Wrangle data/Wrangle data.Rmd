@@ -1,0 +1,44 @@
+---
+title: "Wrangle the data"
+author: "Simon Chen"
+date: "11/23/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Wrangle the data
+Upload code for importing and cleaning your 
+data along with any necessary data transformation, recoding, handling of 
+missingness, factors and dates, or other wrangling issues. 
+
+```{r task0}
+# import certain library
+library(tidyverse)
+library(ggplot2)
+```
+```{r task1}
+# Read data and import it as tibble.
+dat <- read_csv("PTSD_Outcomes_Within_Each_Treatment_Arm.csv")
+dat <- tibble(dat)
+dat
+```
+## Dealing with missing data.
+Since there are too many missing data and they are irrelevant to the anlysis.
+So we can just drop the missing cases.
+```{r task2}
+drop_na(dat)
+dat
+```
+## Selcet columns
+```{r task3}
+# Since the we need to make our analysis more convincible, we need to use total N randomized more than 100.
+names(dat)[names(dat) == 'Treatment Focus (Arm level)'] <- 'Treatment'
+names(dat)[names(dat) == 'Total N Randomized'] <- 'Total'
+dat2 <- select(dat, study_id, Treatment, Total, "N Completed Outcome Measurement", "Measure Score Mean", "Year Added to PTSD-Repository")
+dat2 <- filter(dat2, Total >= 100)
+dat2
+```
+Then the data should be ready to analyze.
