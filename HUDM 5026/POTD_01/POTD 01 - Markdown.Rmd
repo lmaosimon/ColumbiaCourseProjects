@@ -1,0 +1,167 @@
+---
+title: "POTD 01 - Markdown"
+author: "Simon Chen"
+date: "9/21/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Task 1
+
+Demonstrate some arithmetic in R using `+,-,*,/,(), and ^`.
+
+
+```{r task1}
+# Demonstrate +
+1 + 2
+# Demonstrate -
+1 - 2
+# Demonstrate *
+1 * 2
+# Demonstrate /
+1 / 2
+# Demonstrate ()
+(1+2) * 3
+# Demonstrate ^
+2 ^ 3
+```
+
+## Task 2
+
+Going beyond the **division operator**.
+
+a) What does the **%%** operator do? See if you can figure it out via trial and error by running it with a bunch of numbers. 
+For example,`5 %% 2`. Then confirm your guess by looking it up online and/or with help, as in help(**’%%’**).
+
+* I assume that %% returns the reminder, the mod operations.
+```{r task 2a}
+# Mod operator
+x <- 1
+x == 5 %% 2
+```
+
+b) What does the **%/%** operator do?
+
+* %/% indicates integer division.
+```{r task 2b}
+# Integer division.
+x <- 2
+x == 5 %/% 2
+```
+
+## Task 3
+
+Write some comments in R using #'s
+
+*I had comments for each code chunk.*
+
+## Task 4
+
+Use the **c()** function to create the following:
+
+a) A numeric vector of length 5.
+
+```{r task 3a}
+x <- c(1:5)
+x
+```
+
+b) A logical vector of length 3.
+
+```{r task 3b}
+x <- c(TRUE, FALSE, TRUE)
+x
+```
+
+c) A character vector of length 4.
+```{r task 3c}
+x <- c('Hello', 'World', '!', 'Simon')
+x
+```
+
+## Task 5 
+
+Create vector sequences using **seq()** and **rep()** and demonstrate how the
+functions work and explain their arguments.
+
+```{r task 5a}
+x <- seq(from = 1, to = 10, by = 1)
+x
+```
+seq() generates regular sequences, **'seq'** is a standard generic with a default method. 
+
+from, to arguments are the start and end of the sequence, and by is the increments/decrements.
+
+```{r task 5b}
+x <- rep(c(1,2,3), times = 3, each = 2)
+x
+```
+rep() generates repeating objects.
+The first parameter is the variable, times is how many times you want to repeat,
+each is in each time, how many elements you want to have.
+
+## Task 6 
+
+Use **rep()** to generate the following vectors:
+
+a) 15 15 10 10 25 25 15 15 15 15 10 10 25 25 15 15 15 15 10 10 25 25 15 15
+
+```{r task 6a}
+x <- rep(c(15, 10, 25, 15), times = 3, each = 2)
+y = c(15, 15, 10, 10, 25, 25, 15, 15, 15, 15, 10, 10, 25, 25, 15, 15, 15, 15,
+      10, 10, 25, 25, 15, 15)
+x
+setequal(x,y)
+```
+
+b) 15 15 15 10 10 10 25 25 25 15 15 15 15 15 15 10 10 10 25 25 25 15 15 15
+```{r task 6b}
+x <- rep(c(15, 10, 25, 15), times = 2, each = 3)
+y <- c(15, 15, 15, 10, 10, 10, 25, 25, 25, 15, 15, 15, 15, 15, 15, 10, 10, 10,
+       25, 25, 25, 15, 15, 15)
+x
+setequal(x,y)
+```
+
+## Task 7
+
+Create some variable names using assignment arrows, **<-** , use them in arithmetic,
+and print the results. As an example
+
+x <- 15
+
+y <- x + 12
+
+z <- x*y
+
+x
+
+y
+
+z
+
+x + y + z
+
+```{r task 7}
+# Create a task6 and task7 vectors.
+task6 <- 6
+task7 <- 7
+# Arithmetic operations
+task1 <- task6 + task7
+task2 <- task6 * task7
+task3 <- task6 - task7
+task4 <- task6 / task7
+task5 <- task6 %% task7
+
+# print out the results.
+task1
+task2
+task3
+task4
+task5
+task6
+task7
+```

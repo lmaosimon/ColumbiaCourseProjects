@@ -1,0 +1,166 @@
+{
+  "overview": {
+    "course_count": 8,
+    "artifact_count": 137,
+    "notebook_count": 18,
+    "html_count": 29,
+    "pdf_count": 42,
+    "doc_count": 6
+  },
+  "courses": [
+    {
+      "course": "HUDK 4050",
+      "artifact_count": 42,
+      "notebooks": 12,
+      "html_exports": 13,
+      "documents": 4,
+      "artifacts": [
+        "HUDK 4050/HUDK 4050 Reflection Essay.pdf",
+        "HUDK 4050/ICE0.ipynb",
+        "HUDK 4050/Analysis_Challenge_Assignment 1/Crime_2015.csv",
+        "HUDK 4050/Analysis_Challenge_Assignment 1/Analysis Challenge Assignment 1.ipynb",
+        "HUDK 4050/Analysis_Challenge_Assignment 1/CollegeScorecardDataDictionary-09-12-2015.csv",
+        "HUDK 4050/Analysis_Challenge_Assignment 1/FullDataDocumentation.pdf",
+        "HUDK 4050/Analysis_Challenge_Assignment 1/LocalCrimeTrends.pdf",
+        "HUDK 4050/Analysis_Challenge_Assignment 1/Analysis_Challenge_Assignment_1.ipynb",
+        "HUDK 4050/Analysis_Challenge_Assignment 1/Analysis_Challenge_Assignment_1.html",
+        "HUDK 4050/ICE5/ICE5_Data.csv",
+        "HUDK 4050/ICE5/ICE5_R_ZLiu.html",
+        "HUDK 4050/ICE5/ICE5.ipynb"
+      ]
+    },
+    {
+      "course": "HUDK 4051",
+      "artifact_count": 19,
+      "notebooks": 6,
+      "html_exports": 7,
+      "documents": 0,
+      "artifacts": [
+        "HUDK 4051/Mini LA 2/Mini-LA Assignment-RS.nb.html",
+        "HUDK 4051/Mini LA 2/studentInfo.csv",
+        "HUDK 4051/Mini LA 2/studentRegistration.csv",
+        "HUDK 4051/Mini LA 2/Recommendation System.ipynb",
+        "HUDK 4051/ICE5/ICE5.ipynb",
+        "HUDK 4051/ICE5/4051_ICE5_Python_ZLiu.html",
+        "HUDK 4051/ICE2/4051_ICE2_Python_ZLiu.html",
+        "HUDK 4051/ICE2/ICE2.ipynb",
+        "HUDK 4051/ICE2/ICE2_data_eval.csv",
+        "HUDK 4051/ICE3/4051_ICE3_Python_ZLiu.html",
+        "HUDK 4051/ICE3/ICE3.ipynb",
+        "HUDK 4051/ICE4/difficulty.csv"
+      ]
+    },
+    {
+      "course": "HUDK 4054",
+      "artifact_count": 15,
+      "notebooks": 0,
+      "html_exports": 0,
+      "documents": 11,
+      "artifacts": [
+        "HUDK 4054/4054-Final Assignment.pdf",
+        "HUDK 4054/AUTHOR_DATASET_ReadmeTemplate.txt",
+        "HUDK 4054/DART_DMPRubric.pdf",
+        "HUDK 4054/PTSD_Outcoems_README.txt",
+        "HUDK 4054/Reading Reflections III.pdf",
+        "HUDK 4054/PTSD_data_README_Explanations.pdf",
+        "HUDK 4054/4054_Final_Project_CMM_ICPSR37147.pdf",
+        "HUDK 4054/4054_Final_Project_CMM_ICPSR37147-2.pdf",
+        "HUDK 4054/Reading Reflection IV.pdf",
+        "HUDK 4054/Reading Reflections II.pdf",
+        "HUDK 4054/DMP.pdf",
+        "HUDK 4054/PTSD_Outcomes_Within_Each_Treatment_Arm.csv"
+      ]
+    },
+    {
+      "course": "HUDK 5053",
+      "artifact_count": 5,
+      "notebooks": 0,
+      "html_exports": 0,
+      "documents": 5,
+      "artifacts": [
+        "HUDK 5053/Chen et al_2018_RS.pdf",
+        "HUDK 5053/NYU SPS Intern Program.pdf",
+        "HUDK 5053/HUDK5053 Self-Assessment.pdf",
+        "HUDK 5053/HUDK5053 Capstone Project Plan.pdf",
+        "HUDK 5053/Learning Analytics Capstone Conference Program.pdf"
+      ]
+    },
+    {
+      "course": "HUDM 4125",
+      "artifact_count": 13,
+      "notebooks": 0,
+      "html_exports": 0,
+      "documents": 13,
+      "artifacts": [
+        "HUDM 4125/Final.pdf",
+        "HUDM 4125/HUDM4125_HW3.pdf",
+        "HUDM 4125/HUDM4125_HW2.pdf",
+        "HUDM 4125/HUDM4125_HW1.pdf",
+        "HUDM 4125/HUDM4125_HW5.pdf",
+        "HUDM 4125/HUDM4050_HW10.pdf",
+        "HUDM 4125/HUDM4125_HW4.pdf",
+        "HUDM 4125/HUDM4125_HW7.pdf",
+        "HUDM 4125/HUDM4125 Final 2.pdf",
+        "HUDM 4125/HUDM4125_HW8.pdf",
+        "HUDM 4125/Midterm1 Cheat Sheet 2.pdf",
+        "HUDM 4125/HUDM4125 Final.pdf"
+      ]
+    },
+    {
+      "course": "HUDM 5026",
+      "artifact_count": 26,
+      "notebooks": 0,
+      "html_exports": 9,
+      "documents": 5,
+      "artifacts": [
+        "HUDM 5026/Stat Graphs principles.png",
+        "HUDM 5026/POTD 07.Rmd",
+        "HUDM 5026/POTD-07.html",
+        "HUDM 5026/POTD_05/POTD_05.pdf",
+        "HUDM 5026/POTD_05/POTD-05---Tibbles-and-Data-Import.html",
+        "HUDM 5026/POTD_05/POTD 05 - Tibbles and Data Import.Rmd",
+        "HUDM 5026/POTD_02/POTD_02.pdf",
+        "HUDM 5026/POTD_02/POTD-02---Data-Visualization.html",
+        "HUDM 5026/POTD_02/POTD-02---Data-Visualization.Rmd",
+        "HUDM 5026/POTD_03/POTD-03---Markdown.html",
+        "HUDM 5026/POTD_03/POTD 03 - Markdown.Rmd",
+        "HUDM 5026/POTD_03/POTD_03.pdf"
+      ]
+    },
+    {
+      "course": "HUDM 5122",
+      "artifact_count": 9,
+      "notebooks": 0,
+      "html_exports": 0,
+      "documents": 8,
+      "artifacts": [
+        "HUDM 5122/cheat sheet.docx",
+        "HUDM 5122/Midterm Exam KEY.pdf",
+        "HUDM 5122/HW/Homework #9.pdf",
+        "HUDM 5122/HW/HUDM5122_HW6.pdf",
+        "HUDM 5122/HW/Homework #8.pdf",
+        "HUDM 5122/HW/Homework #7.doc",
+        "HUDM 5122/HW/HUDM5122 HW#3.pdf",
+        "HUDM 5122/HW/HUDM5122 HW1.pdf",
+        "HUDM 5122/HW/Homework #10.pdf"
+      ]
+    },
+    {
+      "course": "ITSF 5035",
+      "artifact_count": 8,
+      "notebooks": 0,
+      "html_exports": 0,
+      "documents": 8,
+      "artifacts": [
+        "ITSF 5035/FINAL Media Analysis Assignment summary Spring 2022.pptx",
+        "ITSF 5035/ITSF5035 Assignment3.docx",
+        "ITSF 5035/Media Content Analysis.pdf",
+        "ITSF 5035/Media Content Analysis.docx",
+        "ITSF 5035/HUDK4054 Reflection Paper III.docx",
+        "ITSF 5035/HUDK4054 Reading II.docx",
+        "ITSF 5035/Assignment/Assignment 1 ILSA S2022.pdf",
+        "ITSF 5035/Assignment/Program for the Analysis of Education Systems (PASEC).pdf"
+      ]
+    }
+  ]
+}

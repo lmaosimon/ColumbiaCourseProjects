@@ -1,0 +1,100 @@
+---
+title: "POTD 02 - Data Visualization"
+author: "Simon Chen"
+date: "10/4/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Task 1
+
+Access the help on the data set `state.x77` and briefly describe the data. Convert it to a data frame (tibble) with `as_tibble()`. For example, `dat <- as_tibble(state.x77)`. Now work with the data called dat.
+
+```{r task1}
+library(tidyverse)
+# Check the state.x77 data set.
+?state.x77
+#state.x77: matrix with 50 rows and 8 columns giving the following statistics in the respective columns. Population: population estimate as of July 1, 1975. Income: per capita income (1974). Illiteracy: illiteracy (1970, percent of population). Life Exp: life expectancy in years (1969–71). Murder: murder and non-negligent manslaughter rate per 100,000 population (1976). HS Grad: percent high-school graduates (1970). Frost: mean number of days with minimum temperature below freezing (1931–1960) in capital or large city. Area:land area in square miles. 
+
+# Convert it to a data frame (tibble) with as_tibble().
+dat <- as_tibble(state.x77)
+dat
+```
+
+## Task 2
+
+Make a scatterplot of murder rate (on x-axis) and life expectancy (on y-axis).
+
+```{r task 2}
+# Show the variables name to check potential space error.
+names(dat)
+# To rename variables for indexing
+names(dat)[4] <- 'Life_exp'
+# To plot with murder and life exp.
+ggplot(data = dat) + 
+  geom_point(mapping = aes(x = Murder, y = Life_exp))
+```
+
+## Task 3
+
+Access the help on `state.region` and `state.division` and `state.abb`. Briefly
+describe them each.
+
+```{r task 3}
+?state
+```
+state.region: factor giving the region (Northeast, South, North Central, West) that each state belongs to.</br>
+state.division: factor giving state divisions (New England, Middle Atlantic, South Atlantic, East South Central, West South Central, East North Central, West North Central, Mountain, and Pacific).</br>
+state.abb: character vector of 2-letter abbreviations for the state names.</br>
+
+## Task 4
+
+Building on the scatterplot you made above in (2), color the points by state region.
+```{r task 4}
+ggplot(data = dat) +
+  geom_point(mapping = aes(x = Murder, y = Life_exp, color = state.region))
+```
+
+## Task 5
+
+Building on the scatterplot you made above in (2), create a faceted plot by state division.
+
+```{r task 5}
+ggplot(data = dat) +
+  geom_point(mapping = aes(x = Murder, y = Life_exp)) +
+               facet_wrap(state.division)
+```
+
+## Task 6
+
+Building on the scatterplot you made above in (2), add a nonparametric regression (loess) curve with standard error bars.
+
+```{r task 6}
+ggplot(data = dat, mapping = aes(x = Murder, y = Life_exp)) +
+  geom_point() + 
+  geom_smooth()
+```
+
+## Task 7
+
+Building on the scatterplot you made above in (2), add a nonparametric regression (loess) curves by state region and also color the curves but not the points by state region.
+
+```{r task 7}
+ggplot(data = dat, mapping = aes(x = Murder, y = Life_exp)) +
+  geom_point() + 
+  geom_smooth(mapping = aes(color = state.region))
+```
+
+## Task 8
+
+Task 8 Flex your muscles :) In other words, do something creative with the `state.x77` data (and possibly also the other variables like region, etc.) that demonstrates your new expertise in plotting with `ggplot2`.
+
+```{r task 8}
+# To find relations between life_exp and income using box plot.
+ggplot(data = dat, mapping = aes(x = state.region, y = Income)) +
+         geom_boxplot()
+# We can tell that boxplot for the region and income is not obvious, so we have to choose the correct tool to do analysis.
+```

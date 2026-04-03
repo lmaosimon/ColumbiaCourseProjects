@@ -1,0 +1,43 @@
+---
+title: "POTD 05 - Tibbles and Data Import"
+author: "Simon Chen"
+date: "10/26/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r task0}
+# Import libraries.
+library(tidyverse)
+```
+
+## Task 1
+
+Update the code for reading in your data as a tibble based on techniques covered in WG, ch. 11.
+```{r task 1}
+# using state.x77 data and import them to tibble.
+dat <- read_csv('PTSD_Outcomes_Within_Each_Treatment_Arm.csv')
+dat <- tibble(dat)
+dat
+```
+That's good, no probelms with the data.
+
+
+## Task 2
+
+Continue working with your data to create two new plots, at least one of which is multivariate.
+```{r task 2}
+names(dat)[names(dat) == 'Treatment Focus (Arm level)'] <- 'Treatment'
+p1 <- dat %>%
+  filter('Total N Randomized' > 100)
+ggplot(data = dat, aes(x=Treatment, y = "Year Added to PTSD_Repository")) +
+  geom_point()
+```
+
+```{r task 3}
+ggplot(data = dat, aes(x='Intervention Group', y = 'Total N Randomized')) +
+  geom_boxplot()
+```

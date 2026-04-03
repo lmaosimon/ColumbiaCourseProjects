@@ -1,0 +1,79 @@
+---
+title: "HUDM 5026 Final Project"
+author: "Simon Chen"
+date: "12/15/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Introduction
+
+The PTSD Outcomes Within Each Treatment Arm dataset includes information on how PTSD was measured and at which timepoint. PTSD baseline mean score and standard deviation are provided as well as the within-treatment change from baseline. Within-group effect size is also included. The percent of participants who achieve loss of PTSD diagnosis and the percent who achieve clinically meaningful response are included for studies that reported these outcomes. </br>
+They are categorized into six types of treatments: psychotherapy, pharmacotherapy, complementary and integrative health (CIH), nonpharmacologic biological, nonpharmacologic cognitive and collaborative care. A final category is control interventions, which are comparison conditions.
+I am interested in what the change is in PTSD Scale score across all study arms of a specific treatment type. </br>
+Values abstracted as not applicable ("NA") or not reported ("NR") by the study are null values (empty cells).
+
+```{r task0}
+# import certain library
+library(tidyverse)
+library(ggplot2)
+```
+```{r task1}
+# Read data and import it as tibble.
+dat <- read_csv("PTSD_Outcomes_Within_Each_Treatment_Arm.csv")
+dat <- tibble(dat)
+dat
+```
+## Cleaning data
+Since there are too many missing data and they are irrelevant to the anlysis.
+So we can just drop the missing cases. I shrink the data by removingh rows with NA values from Measure Score Mean and Measure Score Standard Deviation and N compeleted OUtcome Measurement. </br>
+The data deleted to 1774 rows.
+
+```{r task2}
+dat1 <- dat %>%
+  drop_na("Measure Score Mean") %>%
+  drop_na("Measure Score Standard Deviation") %>%
+  drop_na("N Completed Outcome Measurement")
+dat1
+```
+We won't use all the data categories, so I just selcted the useful data to do the analysis.
+```{r task3}
+dat2 <- select(dat1,
+  study_id, 
+  "Study Class",
+  'Treatment Focus (Arm level)',
+  'Total N Randomized',
+  "N Completed Outcome Measurement",
+  "Measure Score Mean",
+  "Male Percent (Study level)",
+  "Year Added to PTSD-Repository"
+)
+dat2
+```
+## Data Visualization
+```{r task4}
+names(dat2)[names(dat2) == 'Study Class'] <- 'Class'
+names(dat2)[names(dat2) == 'Measure Score Mean'] <- 'Score'
+ggplot(data = dat2, aes(x = Class, y = Score)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+Then I want to find more about the gender issue in the PTSD treatment.
+```{r task5}
+names(dat2)[names(dat2) == "Male Percent (Study level)"] <- 'Male'
+ggplot(data = dat2, aes(x = Class, y = Male)) + 
+  geom_boxplot() +
+  theme(axis.text.x = element_text(angle = 60, hjust = 1))
+```
+</br>As we can see, in Psychotherapy and Mixed with CIH treatment was implemented in male and female groups. Even though the score varies a lot, but the mixed treatment is generally good for both male and female group. </br>
+```
+```
+## Conclusion<br>
+From this simple data visualization, it cannot conclude that the best treatment is. But we can tell that Nonpharmacologic biological and Nonpharmacologic conginitive treatment have the more effective treatment effects, the Pschhotherapy and Mixed with CIH treatment are better for both genders. </br>
+```
+```
+## Reference<br>
+Publisher National Center for PTSD. (2021, November 30). PTSD outcomes within each treatment arm. PTSD Outcomes Within Each Treatment Arm - CKAN. Retrieved December 22, 2021, from https://catalog.data.gov/dataset/ptsd-outcomes-within-each-treatment-arm 
